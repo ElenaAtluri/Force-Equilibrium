@@ -70,8 +70,13 @@ $(document).ready(function(){
     } else if (mex > 0) {
       ae = (360 + ae)%360
     }
-    //write results to html
+    // write results to html
     $('#results').html(me.toFixed(2) + " g @ " + ae.toFixed(2) + " degrees");
+    // clear form
+  });
+
+  $('#reset').click(function() {
+    $('#values').trigger("reset");
   });
 
 });
