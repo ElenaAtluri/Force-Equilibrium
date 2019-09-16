@@ -1,19 +1,4 @@
 $(document).ready(function(){
-  $('#button-one').click(function() {
-    $('#one').show();
-    $('#two').hide();
-    $('#three').hide();
-  });
-  $('#button-two').click(function() {
-    $('#one').hide();
-    $('#two').show();
-    $('#three').hide();
-  });
-  $('#button-three').click(function() {
-    $('#one').hide();
-    $('#two').hide();
-    $('#three').show();
-  });
 
   $('#num-forces').change(function() {
     var numForces = document.forms["forces"][0].value;
