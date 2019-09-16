@@ -15,67 +15,63 @@ $(document).ready(function(){
     $('#three').show();
   });
 
-  $('#submit-one').click(function() {
-    var formElems = document.forms["one"];
-    var m1 = parseFloat(formElems.elements["m1"].value);
-    var d1 = parseFloat(formElems.elements["d1"].value);
-    var m2 = m1;
-    var d2 = (180 + d1)%360;
-
-    //write results to html
-    $('#results').html(m2.toFixed(2) + " g @ " + d2.toFixed(2) + " degrees");
-  });
-  $('#submit-two').click(function() {
-    var formElems = document.forms["two"];
-    var m1 = parseFloat(formElems.elements["m1"].value);
-    var d1 = parseFloat(formElems.elements["d1"].value);
-    var m2 = parseFloat(formElems.elements["m2"].value);
-    var d2 = parseFloat(formElems.elements["d2"].value);
-    var m1x = m1*Math.cos(d1*Math.PI/180);
-    var m2x = m2*Math.cos(d2*Math.PI/180);
-    var m1y = m1*Math.sin(d1*Math.PI/180);
-    var m2y = m2*Math.sin(d2*Math.PI/180);
-    var m3x = -(m1x + m2x);
-    var m3y = -(m1y + m2y);
-    var m3 = Math.sqrt(Math.pow(m3x,2) + Math.pow(m3y,2));
-
-    var d3 = Math.atan(m3y/m3x)*180/Math.PI;
-    if (m3x < 0){
-      d3 = 180 + d3;
-    } else if (m3x > 0) {
-      d3 = (360 + d3)%360
+  $('#num-forces').change(function() {
+    var numForces = document.forms["forces"][0].value;
+    if (numForces < 1) {
+      $('#num-forces').val(1);
     }
-
-    //write results to html
-    $('#results').html(m3.toFixed(2) + " g @ " + d3.toFixed(2) + " degrees");
-  });
-  $('#submit-three').click(function() {
-    var formElems = document.forms["three"];
-    var m1 = parseFloat(formElems.elements["m1"].value);
-    var d1 = parseFloat(formElems.elements["d1"].value);
-    var m2 = parseFloat(formElems.elements["m2"].value);
-    var d2 = parseFloat(formElems.elements["d2"].value);
-    var m3 = parseFloat(formElems.elements["m3"].value);
-    var d3 = parseFloat(formElems.elements["d3"].value);
-    var m1x = m1*Math.cos(d1*Math.PI/180);
-    var m2x = m2*Math.cos(d2*Math.PI/180);
-    var m3x = m3*Math.cos(d3*Math.PI/180);
-    var m1y = m1*Math.sin(d1*Math.PI/180);
-    var m2y = m2*Math.sin(d2*Math.PI/180);
-    var m3y = m3*Math.sin(d3*Math.PI/180);
-    var m4x = -(m1x + m2x + m3x);
-    var m4y = -(m1y + m2y + m3y);
-    var m4 = Math.sqrt(Math.pow(m4x,2) + Math.pow(m4y,2));
-
-    var d4 = Math.atan(m4y/m4x)*180/Math.PI;
-    if (m4x < 0){
-      d4 = 180 + d4;
-    } else if (m4x > 0) {
-      d4 = (360 + d4)%360
+    $("#more-forces").empty();
+    $("#m1").val("");
+    $("#a1").val("");
+    for (i = 1; i < numForces; i++) {
+      var lm = document.createElement("label");
+      lm.htmlFor = "m"+(i+1);
+      lm.innerHTML = "Magnitude (g): "
+      var m = document.createElement("input");
+      m.type = "number";
+      m.name = "m"+(i+1);
+      m.id = "m"+(i+1);
+      var la = document.createElement("label");
+      la.htmlFor = "a"+(i+1);
+      la.innerHTML = "Angle (deg): "
+      var a = document.createElement("input");
+      a.type = "number";
+      a.name = "a"+(i+1);
+      a.id = "a"+(i+1);
+      $("#more-forces").append("<b>Force "+(i+1)+":</b><br>");
+      $("#more-forces").append(lm,m,"<br>");
+      $("#more-forces").append(la,a,"<br>");
     }
+  });
 
+  $('#submit').click(function() {
+    var formElems = document.forms["values"];
+    var magnitudes = [];
+    var angles = [];
+    for (i = 0; i < formElems.length; i++) {
+      if (i%2 == 0) {
+        magnitudes.push(formElems[i].value);
+      } else {
+        angles.push(formElems[i].value);
+      }
+    }
+    var magnitudesx = [];
+    var magnitudesy = [];
+    for (i = 0; i < magnitudes.length; i++) {
+      magnitudesx[i] = magnitudes[i]*Math.cos(angles[i]*Math.PI/180);
+      magnitudesy[i] = magnitudes[i]*Math.sin(angles[i]*Math.PI/180);
+    }
+    mex = -1*magnitudesx.reduce((a, b) => a + b, 0);
+    mey = -1*magnitudesy.reduce((a, b) => a + b, 0);
+    var me = Math.sqrt(Math.pow(mex,2) + Math.pow(mey,2));
+    var ae = Math.atan(mey/mex)*180/Math.PI;
+    if (mex < 0){
+      ae = 180 + ae;
+    } else if (mex > 0) {
+      ae = (360 + ae)%360
+    }
     //write results to html
-    $('#results').html(m4.toFixed(2) + " g @ " + d4.toFixed(2) + " degrees");
+    $('#results').html(me.toFixed(2) + " g @ " + ae.toFixed(2) + " degrees");
   });
 
 });
