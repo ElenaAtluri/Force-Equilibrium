@@ -10,10 +10,6 @@ h1 {
   color: #265C00;
 }
 
-h3 {
-  margin-top: 40px;
-}
-
 .button {
   padding: 5px 40px;
   margin: 10px;
@@ -21,13 +17,8 @@ h3 {
   border: black solid 1px;
   text-align: center;
 }
-
 .button:hover {
   background-color: #B3DE81;
-}
-
-#two, #three {
-  display: none;
 }
 
 label {
