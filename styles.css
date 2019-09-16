@@ -36,6 +36,11 @@ label {
   display: inline-block;
 }
 
+input {
+  border: #b3DE81 solid 1px;
+  padding: 2px;
+}
+
 footer {
   margin-top: 40px;
   color: #68A225;

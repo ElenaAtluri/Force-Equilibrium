@@ -10,49 +10,25 @@
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-  <h1>Force Equilibrium</h1>
+  <h1>Force Equilibrium &#9878;</h1>
 
   <!--Number of Forces-->
   <h3>Number of Forces</h3>
-  <p>Please select the number of forces you would like to input.</p>
-  <div class="button-list">
-    <span class="button" id="button-one">1</span>
-    <span class="button" id="button-two">2</span>
-    <span class="button" id="button-three">3</span>
-  </div>
+  <p>Please enter the number of forces you would like to input.</p>
+  <form class="" id="forces">
+    <input type="number" name="num-forces" id="num-forces" value="1">
+  </form>
 
   <!--Given Forces-->
   <h3>Given Forces</h3>
   <p>Enter the necessary information. Units are not necessary.</p>
 
-  <form class="" id="one">
+  <form class="" id="values">
     <b>Force 1:</b><br>
     <label for="m1">Magnitude (g): </label><input type="number" name="m1" id="m1"><br>
-    <label for="d1">Angle (deg): </label><input type="number" name="d1" id="d1"><br>
-    <div class="button" id="submit-one">Submit</div>
-  </form>
-
-  <form class="" id="two">
-    <b>Force 1:</b><br>
-    <label for="m1">Magnitude (g): </label><input type="text" name="m1" id="m1"><br>
-    <label for="d1">Angle (deg): </label><input type="text" name="d1" id="d1"><br>
-    <b>Force 2:</b><br>
-    <label for="m2">Magnitude (g): </label><input type="text" name="m2" id="m2"><br>
-    <label for="d2">Angle (deg): </label><input type="text" name="d2" id="d2"><br>
-    <div class="button" id="submit-two">Submit</div>
-  </form>
-
-  <form class="" id="three">
-    <b>Force 1:</b><br>
-    <label for="m1">Magnitude (g): </label><input type="text" name="m1" id="m1"><br>
-    <label for="d1">Angle (deg): </label><input type="text" name="d1" id="d1"><br>
-    <b>Force 2:</b><br>
-    <label for="m2">Magnitude (g): </label><input type="text" name="m2" id="m2"><br>
-    <label for="d2">Angle (deg): </label><input type="text" name="d2" id="d2"><br>
-    <b>Force 3:</b><br>
-    <label for="m3">Magnitude (g): </label><input type="text" name="m3" id="m3"><br>
-    <label for="d3">Angle (deg): </label><input type="text" name="d3" id="d3"><br>
-    <div class="button" id="submit-three">Submit</div>
+    <label for="a1">Angle (deg): </label><input type="number" name="a1" id="a1"><br>
+    <div id="more-forces"></div>
+    <div class="button" id="submit">Submit</div>
   </form>
 
   <!--Equilibrium Force-->
